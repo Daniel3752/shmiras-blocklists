@@ -1,0 +1,39 @@
+name: Daily Blocklist Update
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # 2 AM UTC daily
+  workflow_dispatch:    # Allow manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install node-fetch
+        working-directory: blocklists
+
+      - name: Run blocklist updater
+        run: node update-blocklist.js
+        working-directory: blocklists
+
+      - name: Commit if changed
+        run: |
+          git config user.name "Shmiras Blocklist Bot"
+          git config user.email "blocklist@shmiras.local"
+          if git diff --quiet blocklists/level1.json; then
+            echo "No changes to commit"
+          else
+            git add blocklists/level1.json
+            git commit -m "Daily blocklist update: $(date -u +'%Y-%m-%d')"
+            git push
+          fi

@@ -1,0 +1,12 @@
+{
+  "name": "shmiras-blocklist-updater",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Daily blocklist updater for Shmiras extension",
+  "scripts": {
+    "update": "node update-blocklist.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.0"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "updated": "2026-03-08T00:00:00Z",
+  "description": "Level 1 blocklist: explicit/pornographic/NSFW sites",
+  "level1": {
+    "video": [
+      "pornhub.com",
+      "xvideos.com",
+      "xnxx.com",
+      "redtube.com",
+      "youporn.com",
+      "tube8.com",
+      "spankbang.com",
+      "xhamster.com",
+      "hentai.com",
+      "eporner.com",
+      "tnaflix.com",
+      "drtuber.com"
+    ],
+    "chat": [
+      "camsoda.com",
+      "chaturbate.com",
+      "cam4.com",
+      "lj.rostikcams.com",
+      "flirt4free.com"
+    ],
+    "forum": [
+      "4chan.org",
+      "8kun.top",
+      "redditnsfw.com"
+    ],
+    "other": [
+      "onlyfans.com",
+      "patreon.com",
+      "adult.com",
+      "fetish.com"
+    ]
+  }
+}
