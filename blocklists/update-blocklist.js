@@ -103,12 +103,13 @@ function categorizeSite(domain) {
 }
 
 async function updateBlocklist() {
-  console.log('[Start] Updating blocklist from public sources...');
+  console.log('[Start] Updating blocklists from public sources...');
 
-  // Load existing blocklist
+  // Load existing Level 1 blocklist
   let blocklist = { video: [], chat: [], forum: [], other: [] };
-  if (fs.existsSync(BLOCKLIST_PATH)) {
-    const existing = JSON.parse(fs.readFileSync(BLOCKLIST_PATH, 'utf8'));
+  const level1Path = path.join(__dirname, 'level1.json');
+  if (fs.existsSync(level1Path)) {
+    const existing = JSON.parse(fs.readFileSync(level1Path, 'utf8'));
     blocklist = existing.level1 || blocklist;
   }
 
@@ -119,7 +120,7 @@ async function updateBlocklist() {
     ...blocklist.other,
   ].map((d) => d.toLowerCase()));
 
-  console.log(`[Current] ${existingSet.size} domains in blocklist`);
+  console.log(`[Level 1] Current: ${existingSet.size} domains`);
 
   // Fetch all sources in parallel
   const results = await Promise.all(
@@ -189,17 +190,35 @@ async function updateBlocklist() {
     blocklist[category].sort();
   }
 
-  // Save blocklist
-  const output = {
+  // Save Level 1 blocklist
+  const output1 = {
     version: '1.0',
     updated: new Date().toISOString(),
     description: 'Level 1 blocklist: explicit/pornographic sites (merged from public blocklists)',
     level1: blocklist,
   };
 
-  fs.writeFileSync(BLOCKLIST_PATH, JSON.stringify(output, null, 2));
-  console.log(`[Done] Blocklist updated: ${newSites.length} new sites added`);
+  fs.writeFileSync(level1Path, JSON.stringify(output1, null, 2));
+  console.log(`[Level 1] Updated: ${newSites.length} new sites added`);
   console.log(`[Stats] video: ${blocklist.video.length}, chat: ${blocklist.chat.length}, forum: ${blocklist.forum.length}, other: ${blocklist.other.length}`);
+
+  // Update Level 2 (social media) — mostly static, just refresh timestamp
+  const level2Path = path.join(__dirname, 'level2.json');
+  let level2 = { social: [] };
+  if (fs.existsSync(level2Path)) {
+    const existing = JSON.parse(fs.readFileSync(level2Path, 'utf8'));
+    level2 = existing.level2 || level2;
+  }
+
+  const output2 = {
+    version: '1.0',
+    updated: new Date().toISOString(),
+    description: 'Level 2 blocklist: Level 1 + social media platforms',
+    level2: level2,
+  };
+
+  fs.writeFileSync(level2Path, JSON.stringify(output2, null, 2));
+  console.log(`[Level 2] Refreshed: ${level2.social.length} social media sites`);
 }
 
 updateBlocklist().catch(console.error);
