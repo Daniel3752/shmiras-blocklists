@@ -202,7 +202,7 @@ async function updateBlocklist() {
   console.log(`[Level 1] Updated: ${newSites.length} new sites added`);
   console.log(`[Stats] video: ${blocklist.video.length}, chat: ${blocklist.chat.length}, forum: ${blocklist.forum.length}, other: ${blocklist.other.length}`);
 
-  // Update Level 2 (social media) — mostly static, just refresh timestamp
+  // Update Level 2 (social media) — keep existing, don't re-add removed sites
   const level2Path = path.join(__dirname, 'level2.json');
   let level2 = { social: [] };
   if (fs.existsSync(level2Path)) {
@@ -210,15 +210,20 @@ async function updateBlocklist() {
     level2 = existing.level2 || level2;
   }
 
+  // Preserve sites that were manually removed (YouTube, etc.)
+  const preservedSites = level2.social || [];
+
   const output2 = {
     version: '1.0',
     updated: new Date().toISOString(),
-    description: 'Level 2 blocklist: Level 1 + social media platforms',
-    level2: level2,
+    description: 'Level 2 blocklist: Level 1 + social media platforms (YouTube removed for custom handling)',
+    level2: {
+      social: preservedSites,
+    },
   };
 
   fs.writeFileSync(level2Path, JSON.stringify(output2, null, 2));
-  console.log(`[Level 2] Refreshed: ${level2.social.length} social media sites`);
+  console.log(`[Level 2] Preserved: ${preservedSites.length} social media sites (no changes)`);
 }
 
 updateBlocklist().catch(console.error);
