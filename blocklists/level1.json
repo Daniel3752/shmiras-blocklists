@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updated": "2026-07-16T05:12:32.172Z",
+  "updated": "2026-07-17T05:15:31.402Z",
   "description": "Level 1 blocklist: explicit/pornographic sites (merged from public blocklists)",
   "level1": {
     "video": [
@@ -24594,6 +24594,7 @@
       "camabi.com",
       "camads.workers.dev",
       "camaieur.fr",
+      "camaligdawe.shop",
       "camaligminchen.qpon",
       "camaligsnuckkreng.cyou",
       "camarchive.me",
