@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updated": "2026-08-29T08:42:28.029Z",
+  "updated": "2026-08-31T08:13:52.416Z",
   "description": "Level 1 blocklist: explicit/pornographic sites (merged from public blocklists)",
   "level1": {
     "video": [
@@ -24636,6 +24636,7 @@
       "camaronpugger.cyou",
       "camarray.com",
       "camassshiel.qpon",
+      "camatacrozer.qpon",
       "camauroblocked.qpon",
       "camawards.xbiz.com",
       "camaypsid.qpon",
