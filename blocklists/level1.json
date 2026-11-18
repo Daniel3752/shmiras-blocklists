@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updated": "2026-11-16T09:06:25.144Z",
+  "updated": "2026-11-18T09:49:37.951Z",
   "description": "Level 1 blocklist: explicit/pornographic sites (merged from public blocklists)",
   "level1": {
     "video": [
@@ -22152,6 +22152,7 @@
       "xfunx1.xxx-sex.fun",
       "xfunx2.xxx-sex.fun",
       "xfunx3.xxx-sex.fun",
+      "xgdxxxysjqpsim.com",
       "xh-porn.com",
       "xhamster-porn-videos.ru",
       "xhamster-porn.pro",
