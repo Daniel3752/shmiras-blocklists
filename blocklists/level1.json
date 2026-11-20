@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updated": "2026-11-19T09:57:50.491Z",
+  "updated": "2026-11-20T09:46:15.173Z",
   "description": "Level 1 blocklist: explicit/pornographic sites (merged from public blocklists)",
   "level1": {
     "video": [
@@ -26209,6 +26209,7 @@
       "scammerrecorder.com",
       "scamoantit.cyou",
       "scampinter.store",
+      "scampsaccount.cfd",
       "scampvisnu.click",
       "scamugoeth.cyou",
       "scatescame.cyou",
